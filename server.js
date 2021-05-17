@@ -8,7 +8,7 @@ const pdf = require('pdf-parse');
 
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
-
+const axios = require('axios');
 
 var nykurs;
 var datum;
@@ -20,6 +20,20 @@ var askstring;
 const server = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+
 
 const io = socketIO(server);
 
@@ -57,5 +71,6 @@ var datestring = str.slice(n+14, n+35);
   console.log('a user connected');
   io.emit('kurs update', nykurs, bidstring,askstring);
   io.emit('kurs update date', datum);
+
 
 });

@@ -21,6 +21,10 @@ const server = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
+server.get("/url", (req, res, next) => {
+ res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+});
+
 const io = socketIO(server);
 
 io.on('connection', (socket) => {

@@ -8,7 +8,7 @@ const pdf = require('pdf-parse');
 
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
-const axios = require('axios');
+
 
 var nykurs;
 var datum;
@@ -17,15 +17,18 @@ var askstring;
 
 
 
-const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+const app = require('express')();
+const http = require('http').Server(app);
 
-server.get("/url", (req, res, next) => {
- res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+app.get('/', function(req, res) {
+   res.sendfile('index.html');
 });
 
-const io = socketIO(server);
+http.listen(3000, function() {
+   console.log('listening on *:3000');
+});
+
+const io = socketIO(http);
 
 io.on('connection', (socket) => {
  crawler("http://share.paretosec.com/upload/files/OTC_prices_web.pdf").then(function(response){

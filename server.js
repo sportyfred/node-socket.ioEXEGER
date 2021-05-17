@@ -14,7 +14,7 @@ var nykurs;
 var datum;
 var bidstring;
 var askstring;
-
+var kursstring;
 
 
 const app = require('express')();
@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     
     bidstring = str.slice(n+16, n+19);
     askstring = str.slice(n+20, n+23);
-    var kursstring = str.slice(n+23, n+26);
+    kursstring = str.slice(n+23, n+26);
 
     var bidnr = parseInt(bidstring, 10);
 
@@ -67,7 +67,7 @@ var datestring = str.slice(n+14, n+35);
   io.emit('kurs update', nykurs, bidstring,askstring);
   io.emit('kurs update date', datum);
 app.get("/api", (req, res, next) => {
- res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+ res.json([datum,bidstring,askstring,kursstring]);
 });
 
 });

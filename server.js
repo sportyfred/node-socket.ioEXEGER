@@ -67,7 +67,8 @@ var datestring = str.slice(n+14, n+35);
   io.emit('kurs update', nykurs, bidstring,askstring);
   io.emit('kurs update date', datum);
 app.get("/api", (req, res, next) => {
- res.json([datum,bidstring,askstring,kursstring]);
+	 res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ date: datum, bid: bidstring, ask: askstring, kurs: kursstring }, null, 3));
 });
 
 });

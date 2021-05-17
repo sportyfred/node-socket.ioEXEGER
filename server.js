@@ -12,7 +12,8 @@ const INDEX = '/index.html';
 
 var nykurs;
 var datum;
-
+var bidstring;
+var askstring;
 
 
 
@@ -31,8 +32,8 @@ io.on('connection', (socket) => {
     	  var str = data.text; 
   var n = str.search("Exeger");
     
-    var bidstring = str.slice(n+16, n+19);
-    var askstring = str.slice(n+20, n+23);
+    bidstring = str.slice(n+16, n+19);
+    askstring = str.slice(n+20, n+23);
     var kursstring = str.slice(n+23, n+26);
 
     var bidnr = parseInt(bidstring, 10);
@@ -54,6 +55,7 @@ var datestring = str.slice(n+14, n+35);
     });
 
   console.log('a user connected');
-  io.emit('kurs update', nykurs);
+  io.emit('kurs update', nykurs, bidstring,askstring);
   io.emit('kurs update date', datum);
+
 });

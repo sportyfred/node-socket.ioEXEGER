@@ -14,7 +14,16 @@ var nykurs;
 var datum;
 
 
-crawler("http://share.paretosec.com/upload/files/OTC_prices_web.pdf").then(function(response){
+
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+ crawler("http://share.paretosec.com/upload/files/OTC_prices_web.pdf").then(function(response){
     // handle response
 
     pdf(response).then(function(data) {
@@ -44,13 +53,6 @@ var datestring = str.slice(n+14, n+35);
 });
     });
 
-const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-const io = socketIO(server);
-
-io.on('connection', (socket) => {
   console.log('a user connected');
   io.emit('kurs update', nykurs);
   io.emit('kurs update date', datum);

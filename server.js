@@ -11,6 +11,7 @@ const INDEX = '/index.html';
 
 
 var nykurs;
+var datum;
 
 
 crawler("http://share.paretosec.com/upload/files/OTC_prices_web.pdf").then(function(response){
@@ -31,10 +32,11 @@ crawler("http://share.paretosec.com/upload/files/OTC_prices_web.pdf").then(funct
 
     var kursnr = parseInt(kursstring, 10);
 
-
-
+  var n = str.search("Latest");
+var datestring = str.slice(n+14, n+35);
 
  nykurs = kursstring;
+ datum = datestring;
     
 
     
@@ -51,4 +53,5 @@ const io = socketIO(server);
 io.on('connection', (socket) => {
   console.log('a user connected');
   io.emit('kurs update', nykurs);
+  io.emit('kurs update date', datum);
 });

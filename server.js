@@ -24,7 +24,10 @@ app.get('/', function(req, res) {
    res.sendfile('index.html');
 });
 
-
+app.get("/api", (req, res, next) => {
+	 res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ date: datum, bid: bidstring, ask: askstring, kurs: kursstring }, null, 3));
+});
 
 http.listen(PORT, function() {
    console.log('listening on *:3000');
@@ -63,10 +66,6 @@ var datestring = str.slice(n+14, n+35);
   console.log('a user connected');
   io.emit('kurs update', nykurs, bidstring,askstring);
   io.emit('kurs update date', datum);
-app.get("/api", (req, res, next) => {
-	 res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ date: datum, bid: bidstring, ask: askstring, kurs: kursstring }, null, 3));
-});
 
 });
    

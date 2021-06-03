@@ -58,10 +58,7 @@ var datestring = str.slice(n+14, n+35);
  datum = datestring;
     
 
-    
-        
-});
-    });
+ 
 
   console.log('a user connected');
   io.emit('kurs update', nykurs, bidstring,askstring);
@@ -72,3 +69,7 @@ app.get("/api", (req, res, next) => {
 });
 
 });
+   
+        
+});
+    });

@@ -35,37 +35,43 @@
 #box {font-size: 20rem;}
 #ask {font-size: 5rem;  align-self: flex-end;}
 #bid {font-size: 5rem;   align-self: flex-end;}
-   }
-  &:before {
-    width: 100%;
-    padding-bottom: 100%;
-    box-shadow: inset 0 0 0 $Loader-offset $Loader-color;
-    animation-name: pulsA;
-  }
-  &:after {
-    width: calc(100% - #{$Loader-offset}*2);
-    padding-bottom: calc(100% - #{$Loader-offset}*2);
-    box-shadow: 0 0 0 0 $Loader-color;
-    animation-name: pulsB;
-  }
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
 }
 
-@keyframes pulsA {
-  0% { box-shadow: inset 0 0 0 $Loader-offset $Loader-color; opacity: 1; }
-  50%, 100% { box-shadow: inset 0 0 0 0 $Loader-color; opacity: 0; }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-@keyframes pulsB {
-  0%, 50% { box-shadow: 0 0 0 0 $Loader-color; opacity: 0; }
-  100% { box-shadow: 0 0 0 $Loader-offset $Loader-color; opacity: 1; }
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
 }
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
    </style>
 </head>
 <body>
 
 <div id="loader"></div>
 
-<div id="myDiv" style="display:none;" class="jumbotron text-center grid-container">
+<div id="myDiv" class="animate-bottom jumbotron text-center grid-container">
 
 
     <div class="grid-item" id="bid"></div>
@@ -100,7 +106,7 @@ socket.on('kurs update', function(nykurs,bidstring,askstring) {
 
 
   document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
+
 
 
   console.log(nykurs);

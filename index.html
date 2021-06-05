@@ -65,13 +65,48 @@
   to{ bottom:0; opacity:1 }
 }
 
+/* General Styling */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Loader Styles start here */
+.loader-wrapper {
+  --line-width: 5px;
+  --curtain-color: #f1faee;
+  --outer-line-color: #a8dadc;
+  --middle-line-color: #457b9d;
+  --inner-line-color: #1d3557;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1000;
+}
+
+.loader {
+  display:block;
+  position: relative;
+  top:50%;
+
    </style>
 </head>
 <body>
 
-<div id="loader"></div>
+<!-- Add loader-wrapper just below the body tag -->
+<div class="loader-wrapper">
+  <div class="loader"></div>
+  <div class="loader-section section-left"></div>
+  <div class="loader-section section-right"></div>
+</div>
 
-<div id="myDiv" class="animate-bottom jumbotron text-center grid-container">
+
+
+<div id="myDiv" class="container animate-bottom jumbotron text-center grid-container">
 
 
     <div class="grid-item" id="bid"></div>
@@ -104,9 +139,7 @@ var senastekurs;
 
 socket.on('kurs update', function(nykurs,bidstring,askstring) {
 
-
-  document.getElementById("loader").style.display = "none";
-
+  
 
 
   console.log(nykurs);
@@ -123,6 +156,9 @@ socket.on('kurs update', function(nykurs,bidstring,askstring) {
 box.innerHTML = nykurs;
 bid.innerHTML = bidstring;
 ask.innerHTML = askstring;
+
+document.querySelector('body').classList.add("loaded");
+  
 
   });
 

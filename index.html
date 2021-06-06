@@ -35,31 +35,35 @@
 #box {font-size: 20rem;}
 #ask {font-size: 5rem;  align-self: flex-end;}
 #bid {font-size: 5rem;   align-self: flex-end;}
-.spinner{
-   position: absolute;
-        top: 30%;
-        left: 30%;
+  .spinner {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #333;
 
-  margin: auto;
-
-  padding: 10px;
-
-        width: 40%;
-        height: 40%;
-
-        border: 8px solid;
-        border-color: #000000 transparent #000000 transparent;
-        border-radius: 50%;
-        animation: spin 1.2s linear infinite;
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
 }
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
   }
-   </style>
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+} </style>
 </head>
 <body>
 

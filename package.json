@@ -22,7 +22,9 @@
     "pug": "^2.0.3",
     "socket.io": "^4.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^5.2.6"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sportyfred/node-socket.ioEXEGER.git"

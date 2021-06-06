@@ -35,25 +35,45 @@
 #box {font-size: 20rem;}
 #ask {font-size: 5rem;  align-self: flex-end;}
 #bid {font-size: 5rem;   align-self: flex-end;}
+.spinner{
+  
+  margin: auto;
 
+  padding: 10px;
+
+        width: 40%;
+        height: 40%;
+
+        border: 8px solid;
+        border-color: #ffffff transparent #ffffff transparent;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
    </style>
 </head>
 <body>
 
 <!-- Add loader-wrapper just below the body tag -->
 
-
-
 <div class="jumbotron text-center grid-container">
+
 
 
 
     <div class="grid-item" id="bid"></div>
   <div class="grid-item" id="box"></div>
   <div class="grid-item" id="ask"></div>  
-
+</div>
   
-   </div>
+
+   <div class="spinner" id="spinner"></div>
 
 </div>
  <div class="date">
@@ -91,7 +111,7 @@ socket.on('kurs update', function(nykurs,bidstring,askstring) {
       document.body.style.backgroundColor = "green";
        senastekurs = nykurs;
     }
-
+document.getElementById("spinner").style.display = "none";
 box.innerHTML = nykurs;
 bid.innerHTML = bidstring;
 ask.innerHTML = askstring;

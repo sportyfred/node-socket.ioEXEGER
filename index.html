@@ -8,6 +8,7 @@
 
 
 .formWrap {
+  display: none;
   width: 29em;
   margin: 2em auto;
 }
@@ -315,7 +316,7 @@ button:focus {
    </div>
 <div class="jumbotron text-center grid-container">
 
-  <div class="wrapper">
+  <div class="wrapper" id="wrap">
   <div class="container">
        <div class="moneybags">
 
@@ -335,7 +336,7 @@ button:focus {
       </div>
 </div>
 
-<div class="grid-item formWrap">
+<div class="grid-item formWrap" id="form">
 
 
   <form id="localStorageTest" method="post" action="">
@@ -404,6 +405,8 @@ socket.on('kurs update date', function(date) {
   
 
 datum.innerHTML = "Senaste uppdatering: " + date;
+document.getElementById("form").style.display = "inline";
+document.getElementById("wrap").style.display = "inline";
 
   });
 

@@ -79,14 +79,12 @@ button:focus {
       display: none;
   max-width: 825px;
   margin: 5% auto;
-  border-left: 1px dashed #ccc;
-  border-right: 1px dashed #ccc;
+  
 }
 .container {
-  margin-top: 50px;
  
   border-radius: 10px;
-  padding: 60px;
+  padding: 20px;
   &.w-ls {
     max-width: 520px;
   }
@@ -310,30 +308,48 @@ button:focus {
 
    <div class="blazingStar spinner" id="spinner"></div>
 
-</div>
  <div class="date">
   <span id="datum"></span>
    </div>
 <div class="jumbotron text-center grid-container">
 
   <div class="wrapper" id="wrap">
-  <div class="container">
-       <div class="moneybags">
+  
+<h2>Innehav</h2><br><span class="number" id="number"></span> st aktier
+       <div class="container w-sm">
+    <div class="moneybags">
 
+     
       <div class="moneybags__item">
-        <h3 class="moneybags__title"><span class="number" id="number"></span> st aktier</h3>
-        <div class="moneybags__container">
-          <div class="moneybag__wrapper">
-            <div class="moneybag">
-              <div class="moneybag__sum">
-                <span class="value" id="value"></span>
+       <h3 class="moneybags__title">Inköpsvärde</h3>
+        <div class="moneybags__container"> <span class="value" id="value"></span>
                 <span class="suffix">kr</span>
+          <div class="moneybag__wrapper">
+            <div class="moneybag" id="valuebag">
+              <div class="moneybag__sum">
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ <div class="moneybags__item">
+   <h3 class="moneybags__title">Aktuellt värde</h3>
+        <div class="moneybags__container"><span class="value" id="aktvalue"></span>
+                <span class="suffix">kr</span>
+          <div class="moneybag__wrapper">
+            <div class="moneybag" id="aktvaluebag">
+              <div class="moneybag__sum">
+             
               </div>
             </div>
           </div>
         </div>
       </div></div>
-      </div>
+
+     
+</div>
 </div>
 
 <div class="grid-item formWrap" id="form">
@@ -402,7 +418,7 @@ ask.innerHTML = askstring;
 
 socket.on('kurs update date', function(date) {
 
-  
+  retrieve();
 
 datum.innerHTML = "Senaste uppdatering: " + date;
 document.getElementById("form").style.display = "inline";
@@ -449,6 +465,12 @@ function retrieve() {
     var integer2 = parseInt(localStorage.getItem('q1'), 10);
 
     value.innerHTML = integer * integer2;
+    aktvalue.innerHTML = integer * senastekurs;
+    document.getElementById("aktvaluebag").style.height = senastekurs  + "px";
+     document.getElementById("aktvaluebag").style.width = senastekurs  + "px";
+         document.getElementById("valuebag").style.height = integer2 + "px";
+     document.getElementById("valuebag").style.width = integer2 + "px";
+    
   }
 }
 function clear() {

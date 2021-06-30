@@ -99,6 +99,7 @@ button:focus {
   }
 }
 .moneybags {
+
   display: flex;
   flex-flow: row wrap;
   margin: 0 -15px;
@@ -142,7 +143,8 @@ button:focus {
     }
   }
   &__title {
-    font: bold 16px/100% Helvetica, Arial, sans-serif;
+    font: bold 24px/100% Helvetica, Arial, sans-serif;
+
     text-align: center;
     white-space: nowrap;
     margin-bottom: 16px;
@@ -156,24 +158,31 @@ button:focus {
       line-height: 1.5em;
       color: #fff;
       margin-right: 0.25rem;
-      font-size: 0.875rem;
+      font-size: 2rem;
     }
     &--is-total {
-      font: bold 18px/120% Helvetica, Arial, sans-serif;
+      font: bold 30px/120% Helvetica, Arial, sans-serif;
       color: black;
       text-align: left;
       white-space: initial;
       padding-left: 30px;
+
     }
   }
   &__container {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
+
   }
 }
 
 .moneybag {
+display: flex;
+justify-content: center;
+align-items: center;
+
+   font: bold 20px/100% Helvetica, sans-serif;
   height: 120px;
   width: 100px;
   background: url(https://www.spv.se/SiteModules/Sjalvbetjaning/DigitalForsakringsInformation/Resources/Images/moneybag.svg)
@@ -184,23 +193,25 @@ button:focus {
   }
 
   &__wrapper {
+
     display: flex;
     flex-flow: column wrap;
     align-items: center;
   }
 
   &__sum {
+
     position: relative;
     top: 55%;
     color: white;
     text-align: center;
     & .value {
-      font: 800 18px/100% Arial, Helvetica, sans-serif;
+      font: 800 32px/100% Helvetica, sans-serif;
       display: block;
       margin-bottom: 0;
     }
     & .suffix {
-      font: normal 14px/100% Arial, Helvetica, sans-serif;
+      font: normal 30px/100% Helvetica, sans-serif;
       display: block;
       margin-bottom: 0;
     }
@@ -208,7 +219,8 @@ button:focus {
 }
 
 .sub-heading--sm {
-  font: bold 13px/100% Arial, Helvetica, sans-serif;
+
+  font: bold 30px/100% Helvetica, sans-serif;
   color: #666;
   font-weight: 600;
   margin: 8px 8px 0;
@@ -315,17 +327,17 @@ button:focus {
 
   <div class="wrapper" id="wrap">
   
-<h2>Innehav</h2><br><span class="number" id="number"></span> st aktier
+<h2>Innehav</h2><br><h3><span class="number" id="number"></span> st aktier</h3>
        <div class="container w-sm">
     <div class="moneybags">
 
      
       <div class="moneybags__item">
-       <h3 class="moneybags__title">Inköpsvärde</h3>
-        <div class="moneybags__container"> <span class="value" id="value"></span>
-                <span class="suffix">kr</span>
+       <h2 class="moneybags__title">Inköpsvärde</h2>
+        <div class="moneybags__container"> 
           <div class="moneybag__wrapper">
-            <div class="moneybag" id="valuebag">
+            <div class="moneybag" id="valuebag"><span class="value" id="value"></span>
+                <span class="suffix">kr</span>
               <div class="moneybag__sum">
                  
               </div>
@@ -335,11 +347,11 @@ button:focus {
       </div>
 
  <div class="moneybags__item">
-   <h3 class="moneybags__title">Aktuellt värde</h3>
-        <div class="moneybags__container"><span class="value" id="aktvalue"></span>
-                <span class="suffix">kr</span>
+   <h2 class="moneybags__title">Aktuellt värde</h2>
+        <div class="moneybags__container">
           <div class="moneybag__wrapper">
-            <div class="moneybag" id="aktvaluebag">
+            <div class="moneybag" id="aktvaluebag"><span class="value" id="aktvalue"></span>
+                <span class="suffix">kr</span>
               <div class="moneybag__sum">
              
               </div>

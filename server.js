@@ -91,14 +91,21 @@ var datestring = str.slice(n+14, n+35);
 
  var nykurs = kursstring;
  var datum = datestring;
-    
+   var farg = ''; 
 
- 
+ var gammalkurs = 180;
+if (nykurs < gammalkurs){
+farg = 'red';
+}
+else
+{
+farg = 'green';
+}
 
   console.log('a user connected');
-  io.emit('kurs update', nykurs, bidstring,askstring);
+  io.emit('kurs update', nykurs, bidstring,askstring,farg);
   io.emit('kurs update date', datum);
-
+gammalkurs = nykurs;
   
 
 });

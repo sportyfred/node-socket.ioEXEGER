@@ -403,24 +403,19 @@ var senastekurs;
 
 
 
+socket.on('kurs update', function(nykurs,bidstring,askstring,farg) {
 
+ 
 
-
-socket.on('kurs update', function(nykurs,bidstring,askstring) {
-
-  
 
 
   console.log(nykurs);
-    if (nykurs < senastekurs){
-        document.body.style.backgroundColor = "red";
-        senastekurs = nykurs;
+   
+        document.body.style.backgroundColor = farg;
+       
 
-    }
-    else {
-      document.body.style.backgroundColor = "green";
-       senastekurs = nykurs;
-    }
+   
+
 document.getElementById("spinner").style.display = "none";
 box.innerHTML = nykurs;
 bid.innerHTML = bidstring;

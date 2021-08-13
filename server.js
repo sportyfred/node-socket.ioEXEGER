@@ -85,7 +85,6 @@ io.on('connection', (socket) => {
     var asknr = parseInt(askstring, 10);
 
     var kursnr = parseInt(kursstring, 10);
-
   var n = str.search("Latest");
 var datestring = str.slice(n+14, n+35);
 
@@ -93,19 +92,27 @@ var datestring = str.slice(n+14, n+35);
  var datum = datestring;
    var farg = ''; 
 
- var gammalkurs = 180;
-if (nykurs < gammalkurs){
-farg = 'red';
-}
-else
+var gammalkursnr = 180;
+
+if (kursnr == gammalkursnr)
 {
 farg = 'green';
+}
+
+else if (kursnr < gammalkursnr){
+farg = 'red';
+}
+else if (kursnr > gammelkursnr){
+farg = 'green';
+gammalkursnr = kursnr;
 }
 
   console.log('a user connected');
   io.emit('kurs update', nykurs, bidstring,askstring,farg);
   io.emit('kurs update date', datum);
-gammalkurs = nykurs;
+
+
+
   
 
 });
